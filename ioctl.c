@@ -16,6 +16,7 @@ struct winsize changeValues(struct winsize win){
     win.ws_col = 50;
     win.ws_xpixel = 50;
     win.ws_ypixel = 50;
+    return win;
 }
 
 void printWinsize(struct winsize win){
@@ -51,7 +52,7 @@ int main(){
     printWinsize(win);
 
     //2.3 Set Device Attributes
-    changeValues(win);
+    win = changeValues(win);
     int changeIoReturn = ioctl(fd, TIOCSWINSZ, &win);
     if(ioCtlReturn == -1)
     {
