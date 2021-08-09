@@ -1,3 +1,15 @@
+/*
+    Author: Hartlove, Bradley
+    Date: August 8, 2021
+    Class: CS431
+    Description: This program utilizes the ioctl() system call to 
+    change the size attributes of the virtual terminal, tty, 
+    reprsented in my system as /dev/pts/1. It utilizes the 
+    isatty() system call, along with various other error checks
+    to verify the contents of the file and prevent running commands
+    on something other than the virtual terminal.
+*/
+
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include <sys/types.h>
