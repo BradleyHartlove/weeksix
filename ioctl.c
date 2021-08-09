@@ -18,11 +18,20 @@ struct winsize changeValues(struct winsize win){
 
 int main(){
     //2.1 Open the device
-    int openReturn = open("/dev/pts/1", O_RDONLY);
+    int fd = open("/dev/pts/1", O_RDONLY);
     int errno;
-    if(openReturn == -1){
+    if(fd == -1){
         fprintf(stderr, "Error opening file: %s\n", strerror(errno));
+        exit(-1);
     } 
 
+    //Check if the device is our virtual terminal
+    int isTty = isatty(fd);
+    if(isTty == -1){
+        fprintf(stderr, "Error opening file: %s\n", strerror(errno));
+        exit(-1);
+    }
+
     
+
 }
