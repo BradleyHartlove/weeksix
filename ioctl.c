@@ -42,6 +42,32 @@ int main(){
     //2.2 Read Devices Attributes
     struct winsize win;
     int ioCtlReturn = ioctl(fd, TIOCGWINSZ, &win);
+    if(ioCtlReturn == -1)
+    {
+        fprintf(stderr, "Error with ioctl system call: %s\n", strerror(errno));
+        exit(-1);
+    }
 
+    printWinsize(win);
 
+    //2.3 Set Device Attributes
+    changeValues(win);
+    int changeIoReturn = ioctl(fd, TIOCSWINSZ, &win);
+    if(ioCtlReturn == -1)
+    {
+        fprintf(stderr, "Error with ioctl system call: %s\n", strerror(errno));
+        exit(-1);
+    }
+
+    struct winsize newWin;
+    int newIoReturn = ioctl(fd, TIOCGWINSZ, &newWin);
+    if(newIoReturn == -1)
+    {
+        fprintf(stderr, "Error with ioctl system call: %s\n", strerror(errno));
+        exit(-1);
+    }
+
+    printWinsize(newWin);
+
+    return 0;
 }
